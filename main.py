@@ -72,6 +72,11 @@ def run():
     fps_buffer = deque(maxlen=30)
     frame_idx = 0
 
+    window_name = "Detection"
+
+    cv2.namedWindow(window_name, cv2.WINDOW_NORMAL)
+    cv2.setWindowProperty(window_name, cv2.WND_PROP_FULLSCREEN, cv2.WINDOW_FULLSCREEN)
+
     while True:
         t0 = time.time()
         ok, frame = cap.read()
@@ -113,7 +118,7 @@ def run():
         cv2.putText(frame, info_line, (18, h - 10), FONT, 0.5, COLOR_TEXT_DIM, 1,
                     cv2.LINE_AA)
 
-        cv2.imshow("Detection", frame)
+        cv2.imshow(window_name, frame)
         if cv2.waitKey(1) & 0xFF in (27, ord("q")):
             break
 
